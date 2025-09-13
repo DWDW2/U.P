@@ -66,7 +66,7 @@ __decorate([
     __metadata("design:returntype", Object)
 ], CarDetectionController.prototype, "getHealth", null);
 exports.CarDetectionController = CarDetectionController = __decorate([
-    (0, common_1.Controller)('car-detection'),
+    (0, common_1.Controller)('car-scratch-and-dent'),
     __metadata("design:paramtypes", [car_detection_service_1.CarDetectionService])
 ], CarDetectionController);
 //# sourceMappingURL=car-detection.controller.js.map

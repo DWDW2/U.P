@@ -12,14 +12,16 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const car_detection_controller_1 = require("./controllers/car-detection.controller");
 const car_detection_service_1 = require("./services/car-detection.service");
+const car_dirty_clean_controller_1 = require("./controllers/car-dirty-clean.controller");
+const car_dirty_clean_service_1 = require("./services/car-dirty-clean.service");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [],
-        controllers: [app_controller_1.AppController, car_detection_controller_1.CarDetectionController],
-        providers: [app_service_1.AppService, car_detection_service_1.CarDetectionService],
+        controllers: [app_controller_1.AppController, car_detection_controller_1.CarDetectionController, car_dirty_clean_controller_1.CarDirtyCleanController],
+        providers: [app_service_1.AppService, car_detection_service_1.CarDetectionService, car_dirty_clean_service_1.CarDirtyCleanService],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

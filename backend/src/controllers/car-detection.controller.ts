@@ -11,7 +11,7 @@ import { CarDetectionService } from '../services/car-detection.service';
 import { DetectByUrlDto } from '../dto/detect-by-url.dto';
 import { DetectionResponseDto } from '../dto/detection-response.dto';
 
-@Controller('car-detection')
+@Controller('car-scratch-and-dent')
 export class CarDetectionController {
     constructor(private readonly carDetectionService: CarDetectionService) { }
 

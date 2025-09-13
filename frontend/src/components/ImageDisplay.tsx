@@ -60,7 +60,6 @@ export function ImageDisplay({ imageUrl, predictions, imageDimensions, isLoading
             predictions.forEach((prediction, index) => {
                 const { x, y, width, height, confidence, class: className } = prediction;
 
-                // Scale coordinates to display dimensions
                 const scaleX = canvas.width / imageDimensions.width;
                 const scaleY = canvas.height / imageDimensions.height;
 

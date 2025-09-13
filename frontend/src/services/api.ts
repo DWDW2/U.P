@@ -1,20 +1,25 @@
 import axios, { type AxiosResponse } from 'axios';
 import type { DetectionResponse, ApiError } from '../types/api';
 
-const API_BASE_URL = 'http://localhost:3005/car-detection';
+const API_BASE_URL = 'http://localhost:3005';
 
 class ApiService {
-    private api = axios.create({
-        baseURL: API_BASE_URL,
+    private scratchDentApi = axios.create({
+        baseURL: `${API_BASE_URL}/car-scratch-and-dent`,
         timeout: 30000,
     });
 
-    async uploadImage(file: File): Promise<DetectionResponse> {
+    private dirtyCleanApi = axios.create({
+        baseURL: `${API_BASE_URL}/car-dirty-clean`,
+        timeout: 30000,
+    });
+
+    async uploadImageForScratchDent(file: File): Promise<DetectionResponse> {
         const formData = new FormData();
         formData.append('image', file);
 
         try {
-            const response: AxiosResponse<DetectionResponse> = await this.api.post('/upload', formData, {
+            const response: AxiosResponse<DetectionResponse> = await this.scratchDentApi.post('/upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -25,9 +30,9 @@ class ApiService {
         }
     }
 
-    async detectFromUrl(imageUrl: string): Promise<DetectionResponse> {
+    async detectFromUrlForScratchDent(imageUrl: string): Promise<DetectionResponse> {
         try {
-            const response: AxiosResponse<DetectionResponse> = await this.api.post('/url', {
+            const response: AxiosResponse<DetectionResponse> = await this.scratchDentApi.post('/url', {
                 imageUrl,
             });
             return response.data;
@@ -36,13 +41,61 @@ class ApiService {
         }
     }
 
-    async checkHealth(): Promise<{ status: string; message: string }> {
+    async checkScratchDentHealth(): Promise<{ status: string; message: string }> {
         try {
-            const response = await this.api.post('/health');
+            const response = await this.scratchDentApi.post('/health');
             return response.data;
         } catch (error: any) {
             throw this.handleError(error);
         }
+    }
+
+    async uploadImageForDirtyClean(file: File): Promise<DetectionResponse> {
+        const formData = new FormData();
+        formData.append('image', file);
+
+        try {
+            const response: AxiosResponse<DetectionResponse> = await this.dirtyCleanApi.post('/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            return response.data;
+        } catch (error: any) {
+            throw this.handleError(error);
+        }
+    }
+
+    async detectFromUrlForDirtyClean(imageUrl: string): Promise<DetectionResponse> {
+        try {
+            const response: AxiosResponse<DetectionResponse> = await this.dirtyCleanApi.post('/url', {
+                imageUrl,
+            });
+            return response.data;
+        } catch (error: any) {
+            throw this.handleError(error);
+        }
+    }
+
+    async checkDirtyCleanHealth(): Promise<{ status: string; message: string }> {
+        try {
+            const response = await this.dirtyCleanApi.post('/health');
+            return response.data;
+        } catch (error: any) {
+            throw this.handleError(error);
+        }
+    }
+
+    async uploadImage(file: File): Promise<DetectionResponse> {
+        return this.uploadImageForScratchDent(file);
+    }
+
+    async detectFromUrl(imageUrl: string): Promise<DetectionResponse> {
+        return this.detectFromUrlForScratchDent(imageUrl);
+    }
+
+    async checkHealth(): Promise<{ status: string; message: string }> {
+        return this.checkScratchDentHealth();
     }
 
     private handleError(error: any): ApiError {
