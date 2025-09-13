@@ -1,3 +1,4 @@
+import curl_cffi as curl
 import os
 import requests
 from bs4 import BeautifulSoup
@@ -5,7 +6,7 @@ from urllib.parse import urljoin
 import random
 import time
 
-url = "https://stock.adobe.com/search?k=dirty+car"
+url = "https://www.istockphoto.com/photos/dirty-car"
 
 ips = [
     '8.8.8.8',
@@ -85,7 +86,7 @@ def make_request_with_retry(url, max_retries=3):
             else:
                 raise
 
-output_dir = "./images-2"
+output_dir = "./images-1"
 os.makedirs(output_dir, exist_ok=True)
 
 print("Fetching main page...")

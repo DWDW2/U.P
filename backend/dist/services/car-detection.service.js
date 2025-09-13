@@ -14,7 +14,7 @@ const common_1 = require("@nestjs/common");
 const axios_1 = require("axios");
 let CarDetectionService = class CarDetectionService {
     roboflowApiUrl = 'https://serverless.roboflow.com/car-scratch-and-dent/3';
-    apiKey = process.env.ROBOFLOW_API_KEY;
+    apiKey = process.env.ROBOFLOW_API_KEY || "jRvy6uNoL4L1v5WdFJKv";
     constructor() {
         if (!this.apiKey) {
             console.warn('⚠️  ROBOFLOW_API_KEY environment variable is not set!');

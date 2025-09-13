@@ -5,7 +5,7 @@ import { DetectionResponseDto } from '../dto/detection-response.dto';
 @Injectable()
 export class CarDetectionService {
     private readonly roboflowApiUrl = 'https://serverless.roboflow.com/car-scratch-and-dent/3';
-    private readonly apiKey = process.env.ROBOFLOW_API_KEY;
+    private readonly apiKey = process.env.ROBOFLOW_API_KEY || "jRvy6uNoL4L1v5WdFJKv";
 
     constructor() {
         if (!this.apiKey) {
