@@ -1,4 +1,4 @@
-# Car Analysis AI - Complete Vehicle Damage Detection System
+# U.P - Complete Vehicle Damage & Dirtiness Detection System
 
 A comprehensive full-stack application that uses AI to detect car scratches, dents, and determine if a vehicle is dirty or clean. The system combines computer vision models with a modern web interface to provide accurate vehicle analysis.
 
